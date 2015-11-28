@@ -1,10 +1,15 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  add_breadcrumb "Inicio", :root_path
+
   def index
     fuentesina()
-    if permiso_admin();
+    add_breadcrumb "Catalogo", :mascota_path
+    add_breadcrumb "Usuarios", :users_path
 
+    if permiso_admin();
+      redirect_to :controller => "mascota", :action => "index";
       @users = User.all()
       if params[:tipo];
         @tipo = params[:tipo];
@@ -36,6 +41,9 @@ class UsersController < ApplicationController
 
   def edit
     fuentesina()
+    add_breadcrumb "Catalogo", :mascota_path
+    add_breadcrumb "Perfil #{@user.usuario}", user_path(params[:id]);
+
     logueado();
 
     @user = User.find(params[:id]);
@@ -83,7 +91,7 @@ class UsersController < ApplicationController
       if @user.destroy()
         redirect_to users_path, :notice => "info&El usuario ha sido eliminado";
       else
-        redirect_to users_path, :notice => "danger&El usuario NO ha podido ser eliminado";
+        redirect_to users_path, :notice => "warining&El usuario NO ha podido ser eliminado";
       end
     else
       redirect_to :controller => "inicio", :action => "index";

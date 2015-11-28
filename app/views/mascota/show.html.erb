@@ -26,7 +26,7 @@
 			<div class="alert alert-<%= array[0] %>" role="alert">
 				<%= array[1] %>
 			</div>
-			
+
 		<% end %>
 
     <div class="row">
@@ -63,11 +63,13 @@
             <%= @mascotum.raza %>
           </p>
 
-          <% if @permiso_admin %>
-          <%= link_to 'Edit', edit_mascotum_path(@mascotum) %>
-          <% end %><br>
+
           <%= link_to 'Adoptar', mascota_path, :class => 'btn btn-success' %>
+          <% if @permiso_admin %>
+          <%= link_to 'Edit', edit_mascotum_path(@mascotum), :class => 'btn btn-primary' %>
+          <% end %>
           <%= link_to 'Regresar', mascota_path, :class => 'btn btn-warning' %>
+
         </div>
       </div>
       <div class="col-md-8">

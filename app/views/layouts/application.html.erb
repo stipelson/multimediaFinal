@@ -117,6 +117,10 @@
           </div><!-- /.container-fluid -->
         </nav>
 
+
+        <%= render_breadcrumbs(" ", { class: '', tag: 'li', divider_class: '/', active_class: 'active' }) %>
+
+
         <%= yield %>
 
       </div>

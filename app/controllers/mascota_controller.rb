@@ -1,9 +1,13 @@
 class MascotaController < ApplicationController
   before_action :set_mascotum, only: [:show, :edit, :update, :destroy]
 
+  add_breadcrumb "Inicio", :root_path
+  add_breadcrumb "Catalogo", :mascota_path
+
   # GET /mascota
   # GET /mascota.json
   def index
+
     fuentesina()
     @loguin = logueado();
     @count= 0
@@ -21,18 +25,28 @@ class MascotaController < ApplicationController
   # GET /mascota/1
   # GET /mascota/1.json
   def show
+    add_breadcrumb "Mascota #{@mascotum.id}", :mascotum_path
     fuentesina()
     @loguin = logueado();
   end
 
   # GET /mascota/new
   def new
+    if permiso_admin() == false
+      redirect_to root_path;
+    end
     fuentesina()
     @mascotum = Mascotum.new
   end
 
   # GET /mascota/1/edit
   def edit
+    fuentesina()
+    add_breadcrumb "Mascota #{@mascotum.id}", @mascotum
+    add_breadcrumb "Editar Mascota #{@mascotum.id}", edit_mascotum_path(@mascotum)
+    if permiso_admin() == false
+      redirect_to root_path;
+    end
     fuentesina()
     @loguin = logueado();
   end
@@ -66,18 +80,30 @@ class MascotaController < ApplicationController
       end
     end
   end
-
+  #serna123
   # DELETE /mascota/1
   # DELETE /mascota/1.json
   def destroy
-    @mascotum.destroy
-    respond_to do |format|
-      format.html { redirect_to mascota_url, notice: 'danger&La mascota fue eliminada correctamente.' }
-      format.json { head :no_content }
+    if permiso_admin() == true
+      @mascotum.destroy
+      respond_to do |format|
+        format.html { redirect_to mascota_url, notice: 'warning&La mascota fue eliminada correctamente.' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to root_path;
     end
   end
 
   private
+
+  def permiso_admin
+    if sesion_identi() and defined?(@permiso_admin) and @permiso_admin
+      return true;
+    else
+      return false;
+    end
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_mascotum

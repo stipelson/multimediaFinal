@@ -20,13 +20,13 @@
     <legend>
       <h2 class="form-signin-heading"><%=  'Lista de mascotas'  %></h2>
     </legend><br>
-  
+
     <% if notice != nil and defined? notice %>
       <% array = notice.split("&") %>
 			<div class="alert alert-<%= array[0] %>" role="alert">
 				<%= array[1] %>
 			</div>
-			
+
 		<% end %>
 
     <% @countTwo = 1 %>
@@ -75,10 +75,10 @@
             <% if @permiso_admin %>
             <div class="row">
               <div class="col-md-6">
-                <td><%= link_to 'Edit', edit_mascotum_path(mascotum), :class => 'btn btn-primary btn-block' %></td>
+                <td><%= link_to 'Editar', edit_mascotum_path(mascotum), :class => 'btn btn-primary btn-block' %></td>
               </div>
               <div class="col-md-6">
-                <td><%= link_to 'Eliminar', mascotum, method: :delete, data: { confirm: 'Dale en aceptar onee chan :3' }, :class => 'btn btn-danger btn-block' %></td>
+                <td><%= link_to 'Eliminar', mascotum, method: :delete, data: { confirm: '¿Desea eliminar esta mascota?' }, :class => 'btn btn-danger btn-block' %></td>
               </div>
             </div>
             <% end %>

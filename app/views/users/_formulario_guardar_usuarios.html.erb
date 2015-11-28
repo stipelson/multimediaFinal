@@ -1,15 +1,19 @@
 <%= form_for(@user, :html => { :class=> 'form-horizontal' }) do |e| %>
+<% if @user.errors.any? %>
+<div class="alert alert-danger" role="alert">
+  <h4><%= pluralize(@user.errors.count, "Error") %> El usuario no ha sido guardado:</h4>
 
-<% @user.errors.full_messages.each do |message| %>
-<div class="alert alert-danger">
-  <strong><%= pluralize(@user.errors.count, " Error(es), ") %></strong> El <%= message %>
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
 </div>
 <% end %>
-
 <div class="form-group">
   <%= e.label :nombre, 'Nombre', :class => "col-sm-5 control-label"  %>
   <div class="col-sm-6">
-    <%= e.text_field(:nombre, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Nombre', :placeholder => 'Nombre') %>
+    <%= e.text_field(:nombre, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Nombre', :placeholder => 'Nombre', :required => true) %>
   </div>
 </div>
 
@@ -23,56 +27,56 @@
 <div class="form-group">
   <%= e.label :numeroid, 'Numero identificacion', :class => "col-sm-5 control-label"  %>
   <div class="col-sm-6">
-    <%= e.text_field(:numeroid, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Numero identificacion') %>
+    <%= e.text_field(:numeroid, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Numero identificacion', :required => true) %>
   </div>
 </div>
 
 <div class="form-group">
   <%= e.label :fnacimiento, 'Fecha de nacimiento', :class => "col-sm-5 control-label"  %>
   <div class="col-sm-6">
-    <%= e.date_select(:fnacimiento) %>
+    <%= e.date_select(:fnacimiento, start_year: 1950) %>
   </div>
 </div>
 
 <div class="form-group">
   <%= e.label :departamento, 'Departamento', :class => "col-sm-5 control-label"  %>
   <div class="col-sm-6">
-    <%= e.text_field(:departamento, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Departamento') %>
+    <%= e.text_field(:departamento, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Departamento', :required => true) %>
   </div>
 </div>
 
 <div class="form-group">
   <%= e.label :ciudad, 'Ciudad', :class => "col-sm-5 control-label"  %>
   <div class="col-sm-6">
-    <%= e.text_field(:ciudad, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Ciudad') %>
+    <%= e.text_field(:ciudad, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Ciudad', :required => true) %>
   </div>
 </div>
 
 <div class="form-group">
   <%= e.label :tel, 'Telefono', :class => "col-sm-5 control-label"  %>
   <div class="col-sm-6">
-    <%= e.text_field(:tel, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Telefono') %>
+    <%= e.text_field(:tel, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Telefono', :required => true) %>
   </div>
 </div>
 
 <div class="form-group">
   <%= e.label :dir, 'Dirección', :class => "col-sm-5 control-label"  %>
   <div class="col-sm-6">
-    <%= e.text_field(:dir, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Dirección') %>
+    <%= e.text_field(:dir, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Dirección', :required => true) %>
   </div>
 </div>
 
 <div class="form-group">
   <%= e.label :usuario, 'Usuario', :class => "col-sm-5 control-label"  %>
   <div class="col-sm-6">
-    <%= e.text_field(:usuario, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Usuario') %>
+    <%= e.text_field(:usuario, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Usuario', :required => true) %>
   </div>
 </div>
 
 <div class="form-group">
   <%= e.label :password, 'Contraseña', :class => "col-sm-5 control-label"  %>
   <div class="col-sm-6">
-    <%= e.text_field(:password, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Contraseña') %>
+    <%= e.text_field(:password, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Contraseña', :required => true) %>
   </div>
 </div>
 
@@ -93,7 +97,7 @@
     <div class="col-sm-6">
     </div>
     <div class="col-sm-6">
-      <%= e.submit 'Enviar', class: "btn btn-success" %> <%= link_to 'Cancelar', users_path, class: "btn btn-danger" %>
+      <%= e.submit 'Enviar', class: "btn btn-success" %> <%= link_to 'Regresar', users_path, class: "btn btn-warning" %>
     </div>
   </div>
 </p>

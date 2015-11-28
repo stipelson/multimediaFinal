@@ -1,7 +1,8 @@
 <%= form_for(@mascotum, :html => { :class=> 'form-horizontal' }) do |f| %>
 <% if @mascotum.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(@mascotum.errors.count, "error") %> prohibited this mascotum from being saved:</h2>
+
+<div class="alert alert-danger" role="alert">
+  <h4><%= pluralize(@mascotum.errors.count, "Error") %> La mascota no ha sido guardada:</h4>
 
   <ul>
     <% @mascotum.errors.full_messages.each do |message| %>
@@ -9,6 +10,8 @@
     <% end %>
   </ul>
 </div>
+
+
 <% end %>
 
 <div class="form-group">
@@ -22,7 +25,7 @@
   <%= f.label :edad, :class => "col-sm-1 control-label" %>
   <div class="col-sm-6">
     <div class="input-group">
-      <%= f.text_field :edad, :class => "form-control" %>
+      <%= f.text_field(:edad, :class => "form-control", :required => true)%>
       <div class="input-group-addon">Años</div>
     </div>
   </div>
@@ -38,7 +41,7 @@
 <div class="form-group">
   <%= f.label :raza, 'Raza', :class => "col-sm-1 control-label"  %>
   <div class="col-sm-6">
-    <%= f.text_field(:raza, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Raza', :placeholder => 'Raza') %>
+    <%= f.text_field(:raza, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Raza', :placeholder => 'Si no sabe la raza colocar: ninguna', :required => true) %>
   </div>
 </div>
 
@@ -46,7 +49,7 @@
   <%= f.label :image, 'Foto', :class => "col-sm-1 control-label"  %>
   <div class="col-sm-6">
     <%= f.file_field :image %>
-    <p class="help-block">Seleccione una foto para subir png, jpg o jpeg</p>
+    <p class="help-block">Seleccione una foto para subir png, jpeg o gif</p>
   </div>
 </div>
 
@@ -55,7 +58,7 @@
     <div class="col-sm-6">
     </div>
     <div class="col-sm-6">
-      <%= f.submit 'Enviar', class: "btn btn-success" %> <%= link_to 'Cancelar', mascota_path, class: "btn btn-danger" %>
+      <%= f.submit 'Enviar', class: "btn btn-success" %> <%= link_to 'Regresar', mascota_path, class: "btn btn-warning" %>
     </div>
   </div>
 </p>
