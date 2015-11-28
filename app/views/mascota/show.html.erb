@@ -21,7 +21,13 @@
       <h2 class="form-signin-heading"><%=  'Mascota'  %></h2>
     </legend><br>
 
-    <p id="notice"><%= notice %></p>
+        <% if notice != nil and defined? notice %>
+      <% array = notice.split("&") %>
+			<div class="alert alert-<%= array[0] %>" role="alert">
+				<%= array[1] %>
+			</div>
+			
+		<% end %>
 
     <div class="row">
       <div class="col-md-4">

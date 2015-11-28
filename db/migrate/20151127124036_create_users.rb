@@ -12,8 +12,6 @@ class CreateUsers < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-
-    SystemSetting.create :nombre => "root", :usuario => 'root', :password => 'root', :admin => "1"
   end
 
   def self.down

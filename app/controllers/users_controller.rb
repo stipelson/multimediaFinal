@@ -10,7 +10,7 @@ class UsersController < ApplicationController
         @tipo = params[:tipo];
       end
     else
-      redirect_to :controller => "inicio", :action => "index";
+      redirect_to :controller => "mascota", :action => "index";
     end
   end
 
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
       @user = User.find(params[:id]);
     else
-      redirect_to :controller => "inicio", :action => "index";
+      redirect_to :controller => "mascota", :action => "index";
     end
   end
 
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     fuentesina()
     if regular();
 
-      redirect_to :controller => "inicio", :action => "index";
+      redirect_to :controller => "mascota", :action => "index";
     else
       @user = User.new();
     end

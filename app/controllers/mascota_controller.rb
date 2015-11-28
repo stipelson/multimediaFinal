@@ -9,7 +9,7 @@ class MascotaController < ApplicationController
     @count= 0
     @countTwo = 1
     if request.post?
-      if defined? params[:sexoFind] or params[:edadFind] or params[:tamanoFind]
+      if defined? params[:sexoFind] and params[:edadFind] and params[:tamanoFind]
         @mascota = Mascotum.where(sexo: params[:sexoFind], edad: params[:edadFind], tamano: params[:tamanoFind]).paginate(:page => params[:page], per_page: 8 )
       end
     else
@@ -44,7 +44,7 @@ class MascotaController < ApplicationController
 
     respond_to do |format|
       if @mascotum.save
-        format.html { redirect_to @mascotum, notice: 'Mascotum was successfully created.' }
+        format.html { redirect_to @mascotum, notice: 'success&La mascota fue creada correctamente.' }
         format.json { render :show, status: :created, location: @mascotum }
       else
         format.html { render :new }
@@ -58,7 +58,7 @@ class MascotaController < ApplicationController
   def update
     respond_to do |format|
       if @mascotum.update(mascotum_params)
-        format.html { redirect_to @mascotum, notice: 'Mascotum was successfully updated.' }
+        format.html { redirect_to @mascotum, notice: 'info&La mascota fue actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @mascotum }
       else
         format.html { render :edit }
@@ -72,7 +72,7 @@ class MascotaController < ApplicationController
   def destroy
     @mascotum.destroy
     respond_to do |format|
-      format.html { redirect_to mascota_url, notice: 'Mascotum was successfully destroyed.' }
+      format.html { redirect_to mascota_url, notice: 'danger&La mascota fue eliminada correctamente.' }
       format.json { head :no_content }
     end
   end
