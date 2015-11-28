@@ -1,0 +1,63 @@
+<%= form_for(@mascotum, :html => { :class=> 'form-horizontal' }) do |f| %>
+<% if @mascotum.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@mascotum.errors.count, "error") %> prohibited this mascotum from being saved:</h2>
+
+  <ul>
+    <% @mascotum.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="form-group">
+  <%= f.label :sexo, 'Sexo', :class => "col-sm-1 control-label"  %>
+  <div class="col-sm-6">
+    <%= f.select(:sexo, [['Macho', 1], ['Hembra', 2]], {}, { :class => 'form-control' }) %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :edad, :class => "col-sm-1 control-label" %>
+  <div class="col-sm-6">
+    <div class="input-group">
+      <%= f.text_field :edad, :class => "form-control" %>
+      <div class="input-group-addon">Años</div>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :tamano, 'Tamaño', :class => "col-sm-1 control-label"  %>
+  <div class="col-sm-6">
+    <%= f.select(:tamano, [['Pequeño', 1], ['Mediano', 2], ['Grande', 3]], {}, { :class => 'form-control' }) %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :raza, 'Raza', :class => "col-sm-1 control-label"  %>
+  <div class="col-sm-6">
+    <%= f.text_field(:raza, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Raza', :placeholder => 'Raza') %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :image, 'Foto', :class => "col-sm-1 control-label"  %>
+  <div class="col-sm-6">
+    <%= f.file_field :image %>
+    <p class="help-block">Seleccione una foto para subir png, jpg o jpeg</p>
+  </div>
+</div>
+
+<p>
+  <div class="form-group">
+    <div class="col-sm-6">
+    </div>
+    <div class="col-sm-6">
+      <%= f.submit 'Enviar', class: "btn btn-success" %> <%= link_to 'Cancelar', mascota_path, class: "btn btn-danger" %>
+    </div>
+  </div>
+</p>
+
+<% end %>

@@ -1,0 +1,105 @@
+<div class="row">
+  <div class="col-md-2">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h<%= @fuente_titulo %> class="panel-title">Me adoptas</h<%= @fuente_titulo %>>
+      </div>
+      <div class="panel-footer">
+        <% if @permiso_admin %>
+        <div class="thumbnail">
+          <%= link_to 'Agregar mascota', new_mascotum_path, :class => 'btn btn-info btn-block' %>
+        </div>
+        <% end %>
+        <%= render :partial => "form_filter.html" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-10">
+
+    <legend>
+      <h2 class="form-signin-heading"><%=  'Lista de mascotas'  %></h2>
+    </legend><br>
+
+    <p id="notice"><%= notice %></p>
+
+    <% @countTwo = 1 %>
+    <% @mascota.each do |mascotum| %>
+    <% if @countTwo == 4 or @countTwo == 8 or @countTwo == 12 or @countTwo == 16 or @countTwo == 20%>
+
+    <div class="row">
+      <% end %>
+
+
+      <div class="col-sm-6 col-md-3">
+        <div class="thumbnail">
+          <%= image_tag mascotum.image.url(:medium) %>
+          <div class="caption">
+            <h<%= @fuente_titulo %>>Descripción</h<%= @fuente_titulo %>>
+            <ul>
+              <li><h<%= @fuente_normal %>><b>Sexo: </b>
+                <%if mascotum.sexo == 1%>
+                Macho</h<%= @fuente_normal %>>
+                <% else %>
+                Hembra</h<%= @fuente_normal %>>
+                <% end %>
+              </li>
+              <li><h<%= @fuente_normal %>><b>Edad: </b>
+                <%= mascotum.edad %> Año(s)</h<%= @fuente_normal %>>
+              </li>
+              <li><h<%= @fuente_normal %>><b>Tamaño: </b>
+                <%if mascotum.tamano == 1%>
+                Pequeño</h<%= @fuente_normal %>>
+                <%elsif mascotum.tamano == 2%>
+                Mediano</h<%= @fuente_normal %>>
+                <% else %>
+                Grande</h<%= @fuente_normal %>>
+                <% end %>
+              </li>
+              <li><h<%= @fuente_normal %>><b>Raza: </b>
+                <%= mascotum.raza %></h<%= @fuente_normal %>>
+              </li>
+            </ul>
+            <div class="row">
+              <div class="col-md-12">
+                <td><%= link_to 'Ver', mascotum, :class => 'btn btn-success btn-block' %></td>
+              </div>
+            </div>
+            <br>
+            <% if @permiso_admin %>
+            <div class="row">
+              <div class="col-md-6">
+                <td><%= link_to 'Edit', edit_mascotum_path(mascotum), :class => 'btn btn-primary btn-block' %></td>
+              </div>
+              <div class="col-md-6">
+                <td><%= link_to 'Eliminar', mascotum, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-block' %></td>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% if @countTwo == 4 or @countTwo == 8 or @countTwo == 12 or @countTwo == 16 or @countTwo == 20%>
+
+    </div>
+    <% end %>
+    <% @countTwo += 1 %>
+
+    <% end %>
+
+
+    <br>
+    <div class="row">
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-3">
+          <%= will_paginate @Mascotum, renderer: BootstrapPagination::Rails %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

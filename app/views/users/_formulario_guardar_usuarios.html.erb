@@ -1,0 +1,101 @@
+<%= form_for(@user, :html => { :class=> 'form-horizontal' }) do |e| %>
+
+<% @user.errors.full_messages.each do |message| %>
+<div class="alert alert-danger">
+  <strong><%= pluralize(@user.errors.count, " Error(es), ") %></strong> El <%= message %>
+</div>
+<% end %>
+
+<div class="form-group">
+  <%= e.label :nombre, 'Nombre', :class => "col-sm-5 control-label"  %>
+  <div class="col-sm-6">
+    <%= e.text_field(:nombre, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Nombre', :placeholder => 'Nombre') %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= e.label :tipoid, 'Tipo Identificacion', :class => "col-sm-5 control-label"  %>
+  <div class="col-sm-6">
+    <%= e.select(:tipoid, [['CC'], ['TI']]) %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= e.label :numeroid, 'Numero identificacion', :class => "col-sm-5 control-label"  %>
+  <div class="col-sm-6">
+    <%= e.text_field(:numeroid, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Numero identificacion') %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= e.label :fnacimiento, 'Fecha de nacimiento', :class => "col-sm-5 control-label"  %>
+  <div class="col-sm-6">
+    <%= e.date_select(:fnacimiento) %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= e.label :departamento, 'Departamento', :class => "col-sm-5 control-label"  %>
+  <div class="col-sm-6">
+    <%= e.text_field(:departamento, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Departamento') %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= e.label :ciudad, 'Ciudad', :class => "col-sm-5 control-label"  %>
+  <div class="col-sm-6">
+    <%= e.text_field(:ciudad, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Ciudad') %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= e.label :tel, 'Telefono', :class => "col-sm-5 control-label"  %>
+  <div class="col-sm-6">
+    <%= e.text_field(:tel, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Telefono') %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= e.label :dir, 'Dirección', :class => "col-sm-5 control-label"  %>
+  <div class="col-sm-6">
+    <%= e.text_field(:dir, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Dirección') %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= e.label :usuario, 'Usuario', :class => "col-sm-5 control-label"  %>
+  <div class="col-sm-6">
+    <%= e.text_field(:usuario, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Usuario') %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= e.label :password, 'Contraseña', :class => "col-sm-5 control-label"  %>
+  <div class="col-sm-6">
+    <%= e.text_field(:password, class: 'form-control', :'data-tools' => 'tooltip', :'title' => 'Tipo de identificacion', :placeholder => 'Contraseña') %>
+  </div>
+</div>
+
+<% if defined?(@permiso_admin) and @permiso_admin %>
+
+<div class="form-group">
+
+<%= e.label :admin, 'Administrador', :class => "col-sm-5 control-label" %>
+<div class="col-sm-6">
+<%= e.check_box (:admin) %>
+</div>
+</div>
+
+<% end %>
+
+<p>
+  <div class="form-group">
+    <div class="col-sm-6">
+    </div>
+    <div class="col-sm-6">
+      <%= e.submit 'Enviar', class: "btn btn-success" %> <%= link_to 'Cancelar', users_path, class: "btn btn-danger" %>
+    </div>
+  </div>
+</p>
+
+<% end %>

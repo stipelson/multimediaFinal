@@ -1,0 +1,22 @@
+<%= form_tag filter_path({:method => "post"}, class: "form-group") do %>
+
+<div class="form-group">
+  <label for="sexoFind"><h<%= @fuente_normal %>>Sexo</h<%= @fuente_normal %>></label>
+  <%= select_tag(:sexoFind, options_for_select([ ['Macho', 1], ['Hembra', 2]] ), {:class => 'form-control'})  %>
+</div>
+
+<div class="form-group">
+  <label for="edadFind"><h<%= @fuente_normal %>>Edad</h<%= @fuente_normal %>></label>
+  <%= number_field_tag 'edadFind', nil, min: 1, class: 'form-control', :required => true %>
+</div>
+
+<div class="form-group">
+  <label for="tamanoFind"><h<%= @fuente_normal %>>Tamaño</h<%= @fuente_normal %>></label>
+  <%= select_tag(:tamanoFind, options_for_select([ ['Pequeño', 1], ['Mediano', 2], ['Grande', 3]] ), {:class => 'form-control'})  %>
+</div>
+
+<div class="thumbnail">
+  <%= submit_tag 'Submit', class: "btn btn-default btn-block" %>
+</div>
+
+<% end %>
