@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def fuentesina
-    if session[:fuenteTamano] != 3 or 4 or 5 or 2
+
+    if session[:fuenteTamano] != 3 or 4 or 5 or 2 or defined?! session[:fuenteTamano]
       @fuente_nav = "4"
     end
     @fuente_nav = session[:fuenteTamano]
@@ -22,13 +23,13 @@ class ApplicationController < ActionController::Base
       @fuente_titulo = "2"
     elsif @fuente_nav == "2"
       @btn = "btn-lg"
-      @fuente_normal = "4"
-      @fuente_titulo = "1"
-    elsif @fuente_nav == "1"
+      @fuente_normal = "5"
+      @fuente_titulo = "2"
+    elsif @fuente_nav == "2"
     else
       @btn = "btn-lg"
-      @fuente_normal = "3"
-      @fuente_titulo = "1"
+      @fuente_normal = "4"
+      @fuente_titulo = "2"
     end
   end
 

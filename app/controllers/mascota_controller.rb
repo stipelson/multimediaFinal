@@ -7,7 +7,6 @@ class MascotaController < ApplicationController
   # GET /mascota
   # GET /mascota.json
   def index
-
     fuentesina()
     @loguin = logueado();
     @count= 0
