@@ -91,8 +91,10 @@
                       <%= link_to 'Mascotas', mascota_path, :'data-tools' => 'tooltip', :'title' => 'Mascotas' %>
                     </li>
 
-                    <li><a href="#">Adopciones</a></li>
                     <% end %>
+                    <li>
+                      <%= link_to 'Adopciones', admin_petitions_path, :'data-tools' => 'tooltip', :'title' => 'Peticiones de adopcion' %>
+                    </li>
                     <li role="separator" class="divider"></li>
                     <li>
                       <%= link_to 'Salir', login_cerrar_sesion_path %>

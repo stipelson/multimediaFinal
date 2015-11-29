@@ -21,13 +21,13 @@
       <h2 class="form-signin-heading"><%=  'Mascota'  %></h2>
     </legend><br>
 
-        <% if notice != nil and defined? notice %>
-      <% array = notice.split("&") %>
-			<div class="alert alert-<%= array[0] %>" role="alert">
-				<%= array[1] %>
-			</div>
+    <% if notice != nil and defined? notice %>
+    <% array = notice.split("&") %>
+    <div class="alert alert-<%= array[0] %>" role="alert">
+      <%= array[1] %>
+    </div>
 
-		<% end %>
+    <% end %>
 
     <div class="row">
       <div class="col-md-4">
@@ -64,52 +64,87 @@
           </p>
 
 
-          <%= link_to 'Adoptar', mascota_path, :class => 'btn btn-success' %>
-          <% if @permiso_admin %>
-          <%= link_to 'Edit', edit_mascotum_path(@mascotum), :class => 'btn btn-primary' %>
-          <% end %>
-          <%= link_to 'Regresar', mascota_path, :class => 'btn btn-warning' %>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#adoptarmodal">
+            Adoptar
+          </button>
 
-        </div>
-      </div>
-      <div class="col-md-8">
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-          <!-- Indicators -->
-          <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-          </ol>
-
-          <!-- Wrapper for slides -->
-          <div class="carousel-inner" role="listbox">
-            <div class="item active">
-              <%= image_tag @mascotum.image.url(:large) %>
-              <div class="carousel-caption">
-                <!-- texto -->
+          <!-- Modal -->
+          <div class="modal fade" id="adoptarmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h2 class="modal-title" id="myModalLabel">Adoptar Mascota</h2>
+                </div>
+                <div class="modal-body">
+                  <ul>
+                    <li>
+                      <h4>Al presionar en <b>Aceptar</b>, tus datos seran enviados al administrador para su aprobacion.<br><br></h4>
+                    </li>
+                    <li>
+                      <h4>Podras ver las peticiones que hayas realizado en la seccion <b>peticiones</b>. <br><br></h4>
+                    </li>
+                    <li>
+                      <h4>Si la peticion es aprobada, el administrador se colocara en <b>contacto</b> contigo y tanto la petición como la mascota seran eliminadas del sistema.</h4>
+                    </li>
+                    </ul>
+                    <br>
+                    <br>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                    <%= link_to 'Adoptar mascota', new_petition_path(@mascotum), :class => 'btn btn-success'%>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="item">
-              <%= image_tag @mascotum.image.url(:large) %>
-              <div class="carousel-caption">
-                <!-- texto -->
-              </div>
-            </div>
-            <!-- texto -->
+
+            <% if @permiso_admin %>
+            <%= link_to 'Edit', edit_mascotum_path(@mascotum), :class => 'btn btn-primary' %>
+            <% end %>
+            <%= link_to 'Regresar', mascota_path, :class => 'btn btn-warning' %>
+
           </div>
-          <!-- Controls -->
-          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+        </div>
+        <div class="col-md-8">
+          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+              <div class="item active">
+                <%= image_tag @mascotum.image.url(:large) %>
+                <div class="carousel-caption">
+                  <!-- texto -->
+                </div>
+              </div>
+              <div class="item">
+                <%= image_tag @mascotum.image.url(:large) %>
+                <div class="carousel-caption">
+                  <!-- texto -->
+                </div>
+              </div>
+              <!-- texto -->
+            </div>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+
         </div>
 
       </div>
-
     </div>
   </div>
-</div>
