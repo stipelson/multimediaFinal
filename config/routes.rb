@@ -82,4 +82,9 @@ Rails.application.routes.draw do
   post 'mascota/index', to: 'mascota#index', as: 'filter'
   get 'inicio/cambiarFont/:fuenteT', to: 'inicio#cambiarFont', as: 'cambiar_font'
 
+  get 'petitions/index', to: 'petitions#index', as: 'admin_petitions'
+  get 'petitions/new/:mascota', to: 'petitions#new', as: 'new_petition'
+  get 'petitions/indexuser'
+  get 'petitions/rechazar/:petition', to: 'petitions#rechazar', as: 'petition_rechazar'
+
 end

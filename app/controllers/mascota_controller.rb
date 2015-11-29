@@ -87,7 +87,7 @@ class MascotaController < ApplicationController
     if permiso_admin() == true
       @mascotum.destroy
       respond_to do |format|
-        format.html { redirect_to mascota_url, notice: 'warning&La mascota fue eliminada correctamente.' }
+        format.html { redirect_to mascota_url, notice: 'warning&La mascota y las peticiones por ella fueron eliminadas correctamente.' }
         format.json { head :no_content }
       end
     else

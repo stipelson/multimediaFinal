@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mascotum_id: 
+  user_id: 
+  aprobada: false
+  vista: false
+  campoextra: MyString
+
+two:
+  mascotum_id: 
+  user_id: 
+  aprobada: false
+  vista: false
+  campoextra: MyString

@@ -1,9 +1,9 @@
 class Mascotum < ActiveRecord::Base
-
+  has_many :petition, :dependent => :delete_all 
   has_attached_file :image, styles: { small: "150x150>", medium: '300x300>', large: '600x600>' }
   validates_attachment :image,
     :content_type => { :content_type => /^image\/(jpeg|png|gif|tiff)$/ }
-  validates :image, presence: {message: '... es requerido seleccionar una imagen'}  
+  validates :image, presence: {message: '... es requerido seleccionar una imagen'}
 
   #validates :email , presence: true , confirmation: true
   #validates :email_confirmation, presence: { message: " es requerido"}

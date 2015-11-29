@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151127184515) do
+ActiveRecord::Schema.define(version: 20151128153745) do
 
   create_table "mascota", force: :cascade do |t|
     t.integer  "sexo"
@@ -25,6 +25,19 @@ ActiveRecord::Schema.define(version: 20151127184515) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
   end
+
+  create_table "petitions", force: :cascade do |t|
+    t.integer  "mascotum_id"
+    t.integer  "user_id"
+    t.boolean  "aprobada"
+    t.boolean  "vista"
+    t.string   "campoextra"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "petitions", ["mascotum_id"], name: "index_petitions_on_mascotum_id"
+  add_index "petitions", ["user_id"], name: "index_petitions_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "nombre"

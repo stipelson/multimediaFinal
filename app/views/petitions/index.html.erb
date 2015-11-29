@@ -1,0 +1,159 @@
+<legend>
+  <h2 class="form-signin-heading">Peticiones pendientes</h2>
+</legend>
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+<% @enEspera.each do |p| %>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading<%= p.id %>">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= p.id %>" aria-expanded="false" aria-controls="collapse<%= p.id %>">
+          Peticion de: <%= p.user.usuario.capitalize %>
+
+        </a>
+        <%if p.aprobada != false %>
+        <span class="label label-default">New</span>
+        <%end%>
+      </h4>
+    </div>
+    <div id="collapse<%= p.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= p.id %>">
+      <div class="panel-body">
+        <h3>Datos del solicitante:</h3>
+        <ul>
+          <li>
+            <b>Nombre:</b> <%= p.user.nombre.capitalize %>
+          </li>
+          <li>
+            <b>Telefono:</b> <%= p.user.tel%>
+          </li>
+          <li>
+            <b>Dirección:</b> <%= p.user.dir %> <%=p.user.ciudad.capitalize%> (<%= p.user.departamento.capitalize %>)
+          </li>
+          <li>
+            <b>usuario:</b> <%= p.user.usuario %>
+          </li>
+        </ul>
+        <td><%= link_to 'Ver mascota', mascotum_path(p.mascotum), :class => 'btn btn-info' %></td>
+
+        <td><%= link_to 'Rechazar', petition_rechazar_path(p), data: { confirm: '¿Desea rechazar esta petición?' }, :class => 'btn btn-danger' %></td>
+
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#adoptarmodal<%= p.id %>">
+          Aprobar adopcion
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="adoptarmodal<%= p.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title" id="myModalLabel">Adoptar Mascota</h2>
+              </div>
+              <div class="modal-body">
+                <ul>
+                  <li>
+                    <h4>Al presionar en <b>Aprobar adopcion</b>, tanto la mascota como la peticion sera eliminada del sistema,
+                      usa los datos proporcionados en la peticion para contactar previamente con el solicitante.<br><br></h4>
+                  </li>
+                  <li>
+                    <h4>Podras ver las peticiones que hayas realizado en la seccion <b>peticiones</b>. <br><br></h4>
+                  </li>
+                  </ul>
+                  <br>
+                  <br>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                  <td><%= link_to 'Aprobar adopcion', p.mascotum, method: :delete, :class => 'btn btn-success' %></td>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+<% end %>
+
+</div>
+
+<!-- comienzo de las que no fueron aceptadas -->
+
+<legend>
+  <h2 class="form-signin-heading">Peticiones rechazadas</h2>
+</legend>
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+<% @rechazadas.each do |petition| %>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading<%= petition.id %>">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= petition.id %>" aria-expanded="false" aria-controls="collapse<%= petition.id %>">
+          Peticion de: <%= petition.user.usuario.capitalize %>
+
+        </a>
+        <%if petition.aprobada != false %>
+        <span class="label label-default">New</span>
+        <%end%>
+      </h4>
+    </div>
+    <div id="collapse<%= petition.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= petition.id %>">
+      <div class="panel-body">
+        <h3>Datos del solicitante:</h3>
+        <ul>
+          <li>
+            <b>Nombre:</b> <%= petition.user.nombre.capitalize %>
+          </li>
+          <li>
+            <b>Telefono:</b> <%= petition.user.tel%>
+          </li>
+          <li>
+            <b>Dirección:</b> <%= petition.user.dir %> <%=petition.user.ciudad.capitalize%> (<%= petition.user.departamento.capitalize %>)
+          </li>
+          <li>
+            <b>usuario:</b> <%= petition.user.usuario %>
+          </li>
+        </ul>
+        <td><%= link_to 'Ver mascota', mascotum_path(petition.mascotum), :class => 'btn btn-info' %></td>
+
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#adoptarmodal<%= petition.id %>">
+          Aprobar adopcion
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="adoptarmodal<%= petition.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title" id="myModalLabel">Adoptar Mascota</h2>
+              </div>
+              <div class="modal-body">
+                <ul>
+                  <li>
+                    <h4>Al presionar en <b>Aprobar adopcion</b>, tanto la mascota como la peticion sera eliminada del sistema,
+                      usa los datos proporcionados en la peticion para contactar previamente con el solicitante.<br><br></h4>
+                  </li>
+                  <li>
+                    <h4>Podras ver las peticiones que hayas realizado en la seccion <b>peticiones</b>. <br><br></h4>
+                  </li>
+                  </ul>
+                  <br>
+                  <br>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                  <td><%= link_to 'Aprobar adopcion', petition.mascotum, method: :delete, :class => 'btn btn-success' %></td>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+<% end %>
+
+</div>
