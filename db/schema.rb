@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151128153745) do
+ActiveRecord::Schema.define(version: 20151201044034) do
 
   create_table "mascota", force: :cascade do |t|
     t.integer  "sexo"
@@ -42,9 +42,7 @@ ActiveRecord::Schema.define(version: 20151128153745) do
   create_table "users", force: :cascade do |t|
     t.string   "nombre"
     t.string   "tipoid"
-    t.integer  "numeroid"
     t.date     "fnacimiento"
-    t.integer  "tel"
     t.string   "dir"
     t.string   "departamento"
     t.string   "ciudad"
@@ -53,6 +51,8 @@ ActiveRecord::Schema.define(version: 20151128153745) do
     t.string   "usuario"
     t.string   "password"
     t.boolean  "admin"
+    t.text     "tel"
+    t.text     "numeroid"
   end
 
 end

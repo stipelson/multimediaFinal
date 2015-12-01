@@ -14,6 +14,11 @@ class CreateUsers < ActiveRecord::Migration
     end
   end
 
+  def self.up
+    remove_column :users, :tel
+    remove_column :users, :numeroid
+  end
+
   def self.down
     drop_table :system_settings
   end
