@@ -14,6 +14,11 @@ class InicioController < ApplicationController
     end
   end
 
+  def acercade
+    fuentesina()
+
+  end
+
   def cambiarFont
     if defined? params[:fuenteT]
       session[:fuenteTamano] = params[:fuenteT];

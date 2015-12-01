@@ -73,7 +73,10 @@
                   <h<%= @fuente_nav %>>Catalogo</h<%= @fuente_nav %>>
                   <% end %>
                 </li>
-                <li><a href="#"><h<%= @fuente_nav %>>Acerca de</h<%= @fuente_nav %>></a></li>
+                <li><%= link_to inicio_acercade_path do %>
+                  <h<%= @fuente_nav %>>Acerca de</h<%= @fuente_nav %>>
+                  <% end %>
+                </li>
               </ul>
 
               <ul class="nav navbar-nav navbar-right">

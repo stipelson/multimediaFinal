@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get 'users/destroy'
 
   get 'inicio/index'
+
+  get 'inicio/acercade'
   # ActiveRecord::Migration.remove_column :users, :tel
 
   # The priority is based upon order of creation: first created -> highest priority.
